@@ -1,0 +1,128 @@
+@import "reset";
+
+@baseWidth : 1200;
+@fontSize: 12;
+@baseScale: 1;
+@baseFontSize: 12 * @baseScale;
+a,
+a:visited,
+a:active,
+a:link,
+a:hover {
+    text-decoration: none;
+}
+
+a {
+    color: #929292;
+}
+
+a.current, a:hover {
+    color: #ffffff;
+}
+
+.no-repeat {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center center;
+}
+
+.layout-2 {
+    .left,
+    .right {
+        width: 50%;
+    }
+    .left {
+        float: left;
+    }
+    .right {
+        float: right;
+    }
+}
+
+.layout-2-left {
+    .left {
+        float: left;
+        width: unit(330 / @baseFontSize, em);
+        margin-right: unit(70 / @baseFontSize, em);;
+    }
+}
+
+.layout-2-right {
+    .right {
+        float: right;
+        width: unit(330 / @baseFontSize, em);
+        margin-left: unit(70 / @baseFontSize, em);;
+    }
+}
+
+.split-bar {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    .no-repeat();
+    background: #eaeaea;
+}
+
+html,
+body,
+{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.main {
+    width: 100%;
+}
+
+.main-content {
+    height: 100%;
+    width: unit(@baseWidth / @baseFontSize, em);
+    margin: 0 auto;
+}
+
+.head {
+    background-color: #13131e;
+    height: unit(70  / @baseFontSize, em);
+    line-height: unit(68  / @baseFontSize, em);
+    text-align: right;
+    .company {
+        float: left;
+        margin-left: unit(74  / @baseFontSize, em);
+        height: 100%;
+        width: unit(152  / @baseFontSize, em);
+        background-image: url(../img/logo.png);
+        .no-repeat();
+        background-size: 100% auto;
+
+    }
+    .head-nav {
+        padding-right: unit(200  / @baseFontSize, em);
+        a {
+            margin-left: 2.3em;
+            font-size: unit(15 / @baseFontSize * 100, %);
+        }
+    }
+}
+
+.foot {
+    background-color: #13131e;
+    padding: unit(20 / @baseFontSize, em) 0;
+    p {
+        margin-bottom: unit(20 / @baseFontSize, em);
+        &:last-child {
+            margin-bottom: 0;
+        }
+        a {
+            font-size: unit(16 / @baseFontSize * 100, %);
+            margin-right: 2em;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+}
+
+
