@@ -197,6 +197,7 @@ html,
 body {
   height: 100%;
   width: 100%;
+  min-width: 95.83333333em;
   text-align: center;
 }
 .main {
@@ -204,7 +205,7 @@ body {
 }
 .main-content {
   height: 100%;
-  width: 100em;
+  min-width: 95.83333333em;
   margin: 0 auto;
 }
 .head {
@@ -222,7 +223,7 @@ body {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center center;
-  background-size: 100% auto;
+  background-size: 100% 3.83333333em;
 }
 .head .head-nav {
   padding-right: 16.66666667em;
@@ -261,6 +262,9 @@ body {
   margin-left: -70.83333333em;
   width: 141.66666667em;
   height: 25.41666667em;
+}
+.news .banner-sub-page {
+  background-color: #834512;
 }
 .news .main-content {
   width: 86.66666667em;
@@ -302,7 +306,6 @@ body {
   padding: 0.5em 0;
   line-height: 1.5em;
   font-size: 116.66666667%;
-  text-indent:2em;
 }
 .news .news-nav {
   height: 5em;
@@ -420,7 +423,7 @@ color:#666;
 .sub-page-solution .split-bar {
   background-image: url(../img/icon-split-horizen-bar-light-green.png);
 }
-.sub-page-solution h3{
+.sub-page-solution h3 {
   text-align: left;
   padding: 2.5em 0 2.08333333em;
   font-size: 200%;
