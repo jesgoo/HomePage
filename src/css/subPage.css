@@ -393,12 +393,21 @@ color:#666;
 .sub-page-about .right {
   float: right;
 }
-.sub-page-about p {
+.sub-page-about p{
   text-indent: 2em;
   text-align: left;
   line-height: 2;
   font-size: 150%;
   color: #666666;
+}
+.sub-page-about li {
+  text-indent: 2em;
+  text-align: left;
+  line-height: 2;
+  font-size: 120%;
+  color: #666666;
+  list-style:square;
+  list-style-position:inside;
 }
 .sub-page-solution .main-content {
   width: 86.66666667em;
