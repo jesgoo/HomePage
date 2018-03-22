@@ -7,8 +7,8 @@ var Slider = (function () {
     };
     var pt = Slider.prototype;
     pt.DIRECTION = {
-        toLeft: 'left',
-        toRight: 'right'
+        fromLeft: 'left',
+        fromRight: 'right'
     };
     pt.bindEvent = function () {
         var me = this;
@@ -17,12 +17,12 @@ var Slider = (function () {
         }).on('mouseleave', function () {
             me.run();
         }).on('click', '.banner-btn-left', function () {
-            me.move(me.current - 1, me.DIRECTION.toLeft);
+            me.move(me.current - 1, me.DIRECTION.fromRight);
         }).on('click', '.banner-btn-right', function () {
-            me.move(me.current + 1, me.DIRECTION.toRight);
+            me.move(me.current + 1, me.DIRECTION.fromLeft);
         }).on('click', '.banner-btn-indexes span:not(.current)', function () {
             var targetIndex = $(this).index();
-            me.move(targetIndex, targetIndex > me.current ? me.DIRECTION.toRight : me.DIRECTION.toLeft);
+            me.move(targetIndex, targetIndex > me.current ? me.DIRECTION.fromLeft : me.DIRECTION.fromRight);
         });
     };
     pt.TPL_BTN = [
@@ -34,7 +34,11 @@ var Slider = (function () {
         '</div>'
     ].join('');
     pt.init = function () {
-        this.imgContainer = this.el.find('img').wrap('<div class="img-container"></div>').parent();
+        this.imgContainer = this.el.find('img')
+            .wrap('<div class="img-container"></div>').parent()
+            .each(function () {
+                $(this).css('backgroundColor', '#' + $('img', this).data('bg'));
+            });
         this.imgContainer.eq(0).css('z-index', 2);
         this.el.prepend(this.TPL_BTN);
         this.btnIndexes = this.el.find('.banner-btn-indexes').html(new Array(this.imgContainer.length + 1).join('<span></span>')).find('span');
@@ -52,11 +56,20 @@ var Slider = (function () {
         if (target === me.current) {
             return false;
         }
-        direct = direct || me.DIRECTION.toRight;
+        direct = direct || me.DIRECTION.fromLeft;
         var clientWidth = me.el.width();
         me.animating = true;
-        me.imgContainer.eq(target).css({
-            left: (direct === me.DIRECTION.toLeft ? clientWidth : -clientWidth) + 'px',
+        me.imgContainer.eq(target).hide().css({
+            zIndex: 3
+        }).fadeIn('slow', function () {
+            me.imgContainer.eq(me.current).css('zIndex', 1);
+            me.imgContainer.eq(target).css('zIndex', 2);
+            me.current = target;
+            me.animating = false;
+            me.btnIndexes.removeClass('current').eq(target).addClass('current');
+        });
+        /*me.imgContainer.eq(target).css({
+            left: (direct === me.DIRECTION.fromLeft ? clientWidth : -clientWidth) + 'px',
             zIndex: 3
         }).animate({
             left: 0
@@ -66,7 +79,7 @@ var Slider = (function () {
             me.current = target;
             me.animating = false;
             me.btnIndexes.removeClass('current').eq(target).addClass('current');
-        });
+        });*/
     };
     pt.run = function () {
         var me = this;
